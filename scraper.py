@@ -29,8 +29,10 @@ if '%s' in stations_url:
 if '%s' in districts_url:
     raise ValueError('Failed to find Polling Districts layer')
 
-
+print(stations_url)
 stations_scraper = ArcGisScraper(stations_url, council_id, 'utf-8', 'stations')
 stations_scraper.scrape()
+
+print(districts_url)
 districts_scraper = ArcGisScraper(districts_url, council_id, 'utf-8', 'districts')
 districts_scraper.scrape()
