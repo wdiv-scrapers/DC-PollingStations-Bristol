@@ -9,8 +9,8 @@ council_id = 'E06000023'
 
 
 def scrape_opendata():
-    stations_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-stations&rows=1000"
-    districts_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-districts&rows=1000"
+    stations_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-stations&rows=1000&sort=-objectid"
+    districts_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-districts&rows=1000&sort=-objectid"
 
     print(stations_url)
     stations_scraper = HashOnlyScraper(stations_url, council_id, 'stations_opend', 'json')
