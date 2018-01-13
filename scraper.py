@@ -13,6 +13,8 @@ class BristolOpenDataHashOnlyScraper(HashOnlyScraper):
     def get_data(self):
         data_str = get_data_from_url(self.url)
         data = json.loads(data_str.decode('utf-8'))
+        for record in data['records']:
+            record.pop('record_timestamp', None)
         return bytes(json.dumps(data, sort_keys=True, indent=4), 'utf-8')
 
 
