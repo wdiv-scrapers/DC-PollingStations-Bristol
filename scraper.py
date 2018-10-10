@@ -66,5 +66,5 @@ def scrape_arcgis():
     districts_scraper.scrape()
 
 
-scrape_opendata()
+#scrape_opendata()
 scrape_arcgis()
