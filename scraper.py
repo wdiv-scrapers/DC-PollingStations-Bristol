@@ -2,34 +2,24 @@ import json
 import requests
 from dc_base_scrapers.common import get_data_from_url
 from dc_base_scrapers.arcgis_scraper import ArcGisScraper
-from dc_base_scrapers.hashonly_scraper import HashOnlyScraper
+from dc_base_scrapers.geojson_scraper import GeoJsonScraper
 
 
 council_id = 'E06000023'
 
 
-class BristolOpenDataHashOnlyScraper(HashOnlyScraper):
-
-    def get_data(self):
-        data_str = get_data_from_url(self.url)
-        data = json.loads(data_str.decode('utf-8'))
-        for record in data['records']:
-            record.pop('record_timestamp', None)
-        return bytes(json.dumps(data, sort_keys=True, indent=4), 'utf-8')
-
-
 def scrape_opendata():
-    stations_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-stations&rows=1000&sort=-objectid"
-    districts_url = "https://opendata.bristol.gov.uk/api/records/1.0/search/?dataset=polling-districts0&rows=1000&sort=-objectid"
+    stations_url = "https://opendata.bristol.gov.uk/explore/dataset/polling-stations/download/?format=geojson&timezone=Europe/London"
+    districts_url = "https://opendata.bristol.gov.uk/explore/dataset/polling-districts/download/?format=geojson&timezone=Europe/London"
 
     print(stations_url)
-    stations_scraper = BristolOpenDataHashOnlyScraper(
-        stations_url, council_id, 'stations_opend', 'json')
+    stations_scraper = GeoJsonScraper(
+        stations_url, council_id, 'utf-8', 'stations_opend', key='objectid')
     stations_scraper.scrape()
 
     print(districts_url)
-    districts_scraper = BristolOpenDataHashOnlyScraper(
-        districts_url, council_id, 'districts_opend', 'json')
+    districts_scraper = GeoJsonScraper(
+        districts_url, council_id, 'utf-8', 'districts_opend', key='objectid')
     districts_scraper.scrape()
 
 
@@ -66,5 +56,5 @@ def scrape_arcgis():
     districts_scraper.scrape()
 
 
-#scrape_opendata()
+scrape_opendata()
 scrape_arcgis()
