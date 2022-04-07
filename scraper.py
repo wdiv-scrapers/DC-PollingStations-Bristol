@@ -5,7 +5,7 @@ from dc_base_scrapers.arcgis_scraper import ArcGisScraper
 from dc_base_scrapers.geojson_scraper import GeoJsonScraper
 
 
-council_id = 'E06000023'
+council_id = 'BST'
 
 
 def scrape_opendata():
