@@ -20,9 +20,23 @@ def scrape_opendata():
     print(districts_url)
     districts_scraper = GeoJsonScraper(
         districts_url, council_id, 'utf-8', 'districts_opend', key='objectid')
+    # import pdb; pdb.set_trace()
     districts_scraper.scrape()
 
+def scrape_new_esri():
+    stations_url = "https://opendata.bristol.gov.uk/datasets/1d4c3696ca6f4587becccffae3739b88_1/explore?showTable=true"
+    districts_url = "https://maps2.bristol.gov.uk/server2/rest/services/ext/ll_boundaries/MapServer/3/query?outFields=*&where=1%3D1&f=geojson"
 
+    print(stations_url)
+    stations_scraper = GeoJsonScraper(
+        stations_url, council_id, 'utf-8', 'stations_opend', key='objectid')
+    stations_scraper.scrape()
+
+    print(districts_url)
+    districts_scraper = GeoJsonScraper(
+        districts_url, council_id, 'utf-8', 'districts_opend', key='objectid')
+    # import pdb; pdb.set_trace()
+    districts_scraper.scrape()
 def scrape_arcgis():
     stations_url = "https://maps.bristol.gov.uk/arcgis/rest/services/ext/localinfo/MapServer/%s/query?where=OBJECTID+LIKE+%%27%%25%%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=OBJECTID&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson"
     districts_url = "https://maps.bristol.gov.uk/arcgis/rest/services/ext/localinfo/MapServer/%s/query?where=OBJECTID+LIKE+%%27%%25%%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=4326&returnIdsOnly=false&returnCountOnly=false&orderByFields=OBJECTID&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&f=pjson"
@@ -56,5 +70,6 @@ def scrape_arcgis():
     districts_scraper.scrape()
 
 
-scrape_arcgis()
-scrape_opendata()
+# scrape_arcgis()
+# scrape_opendata()
+scrape_new_esri()
