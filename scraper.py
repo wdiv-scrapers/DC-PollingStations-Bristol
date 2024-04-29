@@ -29,12 +29,12 @@ def scrape_new_esri():
 
     print(stations_url)
     stations_scraper = GeoJsonScraper(
-        stations_url, council_id, 'utf-8', 'stations_opend', key='objectid')
+        stations_url, council_id, 'utf-8', 'stations', key='OBJECTID')
     stations_scraper.scrape()
 
     print(districts_url)
     districts_scraper = GeoJsonScraper(
-        districts_url, council_id, 'utf-8', 'districts_opend', key='objectid')
+        districts_url, council_id, 'utf-8', 'districts', key='OBJECTID')
     districts_scraper.scrape()
 
 def scrape_arcgis():
